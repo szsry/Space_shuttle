@@ -2,5 +2,5 @@
 
 Testing
 
-https://img.shields.io/travis/USER/REPO.svg
-https://img.shields.io/codecov/c/github/codecov/example-python.svg
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]()
+(https://img.shields.io/codecov/c/github/codecov/example-python.svg)]()
