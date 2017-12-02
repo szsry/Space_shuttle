@@ -5,6 +5,7 @@ import com.au.arvin.spaceshuttle.service.MyUserDetailServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,6 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@Order(1)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -37,8 +39,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/VAADIN/**").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/welcome").permitAll()
-                .antMatchers("/api/**").hasAuthority("API_USER")
-                .antMatchers("/home/**").hasAuthority("USER").anyRequest()
+                .antMatchers("/api/v1/**").hasAuthority("USER")
+                .antMatchers("/home/**").hasAuthority("USER")
+                .anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
                 .defaultSuccessUrl("/home")

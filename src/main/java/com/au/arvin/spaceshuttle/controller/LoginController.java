@@ -1,11 +1,11 @@
 package com.au.arvin.spaceshuttle.controller;
 
+import com.au.arvin.spaceshuttle.model.MyUserPrincipal;
 import com.au.arvin.spaceshuttle.model.User;
 import com.au.arvin.spaceshuttle.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -72,8 +72,8 @@ public class LoginController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home() {
-        UserDetails userDetails =
-                (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MyUserPrincipal userDetails =
+                (MyUserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         modelAndView.addObject("userName", "Welcome " + userDetails.getUsername());
